@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Portal 3: Guess the Number</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <audio id="audioWin"><source src="audio/portal_still_alive.mp3" type="audio/mpeg"></source></audio>
+    <audio id="audioLose"><source src="audio/portal_goodbye.mp3" type="audio/mpeg"=></source></audio>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!--<img src="Ash_A_191color_lo_centered.png" class="img-responsive img-rounded">-->
+            <a class="navbar-brand" href="#">andrewmash</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="mailto:andrewash9@gmail.com">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    <div class="container">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center">
+            <h1 class="text-center">Portal 3</h1>
+            <p class="lead text-center">That's right: Portal 3 is a guess-the-number game. Bet you didn't see THAT one coming.</p>
+            <p class="lead text-center">Please guess a number between 1 and 100. Please turn your sound on. Please remain calm.</p>
+              <div class="form-group">
+                <input type="guess" class="form-control" id="guess" placeholder="1-100" autocomplete="off">
+              </div>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-primary" id="submit">Guess</button>
+                <button type="button" class="btn btn-default" id="hint">Hint</button>
+                <button type="button" class="btn btn-default" id="restart"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Restart</button>
+              </div>
+            <br>
+            <br>
+            <p class="lead text-center" id="output"></p>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/guessingGame.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  </body>
+</html>
