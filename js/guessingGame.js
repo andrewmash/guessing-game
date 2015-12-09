@@ -5,8 +5,6 @@
 // I figure it's a start. I've been reading about the YUI pattern, but haven't gotten
 // it figured out yet.
 var gameData = {playersGuess: 0,
-				audioWin: undefined,
-				audioLose: undefined,
     			winningNumber: generateWinningNumber(),
     			guessAmount: 0,
     			guesses: []};
@@ -70,10 +68,10 @@ function checkGuess(){
 		if (gameData.playersGuess === gameData.winningNumber) {
 			$('.jumbotron').animate({backgroundColor: '#ffffff'}, '800');
 			$('#output').text("YOU WIN!");
-			gameData.audioWin = document.createElement('audio');
-        	gameData.audioWin.setAttribute('src', 'audio/portal_still_alive.mp3');
-        	gameData.audioWin.setAttribute('autoplay', 'autoplay');
-        	gameData.audioWin.play();
+			$("<audio></audio>").attr({
+    			'src':'audio/portal_still_alive.mp3',
+    			'autoplay':'autoplay'
+			}).appendTo("body");
 		}
 		else {
 			if (gameData.guesses.indexOf(gameData.playersGuess) == -1) {
@@ -83,10 +81,10 @@ function checkGuess(){
 				$('#output').text(guessMessage());
 				if (gameData.guessAmount === 5) {
 					$('#output').text("YOU LOSE! Click the Restart button to play again.")
-					gameData.audioLose = document.createElement('audio');
-        			gameData.audioLose.setAttribute('src', 'audio/portal_goodbye.mp3');
-        			gameData.audioLose.setAttribute('autoplay', 'autoplay');
-        			gameData.audioLose.play();
+					$("<audio></audio>").attr({
+    					'src':'audio/portal_goodbye.mp3',
+    					'autoplay':'autoplay'
+					}).appendTo("body");
 				}
 			}
 			else {
@@ -117,14 +115,8 @@ function playAgain(){
 	gameData.guessAmount = 0;
 	gameData.guesses = [];
 	$('.jumbotron').animate({backgroundColor: '#eeeeee'}, '200');
-	if (gameData.audioWin != undefined) {
-		gameData.audioWin.pause();
-		gameData.audioWin.currentTime = 0;
-	}
-	if (gameData.audioLose != undefined) {
-		gameData.audioLose.pause();
-		gameData.audioLose.currentTime = 0;
-	}
+	$('audio').trigger('pause');
+	$('audio').remove();
 }
 
 function shuffle(array) {
