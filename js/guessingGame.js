@@ -59,7 +59,7 @@ function guessMessage(){
 	}
 	return "Your guess was " + lowerOrHigher() + " than, and " + howFarFrom + 
 	", the winning number. So far, you have guessed: " + gameData.guesses.join(", ") + 
-	". You have " + (5 - gameData.guessAmount) + " guesses left!";
+	". You have " + (5 - gameData.guessAmount) + " guess(es) left!";
 }
 
 // Check if the Player's Guess is the winning number 
@@ -128,23 +128,13 @@ function playAgain(){
 }
 
 function shuffle(array) {
-	// Fisher-Yates shuffle, courtesy of Stack Overflow
-  var currentIndex = array.length, temporaryValue, randomIndex ;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
+	// randomize the order of the hints
+	var newArray = [];
+	var originalArrayLength = array.length;
+	for (var i = 0; i < originalArrayLength; i++) {
+		newArray.push(array.splice(Math.floor(Math.random() * array.length), 1));
+	}
+	return newArray;
 }
 
 /* **** Event Listeners/Handlers ****  */
