@@ -76,6 +76,7 @@ function checkGuess(){
 				gameData.guesses.push(gameData.playersGuess);
 				$('#output').text(guessMessage());
 				if (gameData.guessAmount === 5) {
+					$('.jumbotron').animate({backgroundColor: '#111111', color: '#eeeeee'}, '200');
 					$('#output').text("YOU LOSE! Click the Restart button to play again.")
 					$("<audio></audio>").attr({
     					'src':'audio/portal_goodbye.mp3',
@@ -109,7 +110,7 @@ function playAgain(){
 	gameData.winningNumber = generateWinningNumber();
 	gameData.guessAmount = 0;
 	gameData.guesses = [];
-	$('.jumbotron').animate({backgroundColor: '#eeeeee'}, '200');
+	$('.jumbotron').animate({backgroundColor: '#eeeeee', color: '#333'}, '200');
 	$('audio').trigger('pause');
 	$('audio').remove();
 	$('#guess').prop('disabled', null);
