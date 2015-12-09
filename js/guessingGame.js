@@ -1,5 +1,4 @@
 /* **** Global Variables **** */
-// try to elminate these global variables in your project, these are here just to start.
 
 // I recognize that this is probably the worst way to eliminate global variables, but
 // I figure it's a start. I've been reading about the YUI pattern, but haven't gotten
@@ -16,14 +15,12 @@ var gameData = {playersGuess: 0,
 // Generate the Winning Number
 
 function generateWinningNumber(){
-	// add code here
 	return Math.ceil(Math.random() * 100);
 }
 
 // Fetch the Players Guess
 
 function playersGuessSubmission(){
-	// add code here
 	gameData.playersGuess = +$('#guess').val();
 	$('#guess').val('');
 	checkGuess();
@@ -32,7 +29,6 @@ function playersGuessSubmission(){
 // Determine if the next guess should be a lower or higher number
 
 function lowerOrHigher(){
-	// add code here
 	return(gameData.playersGuess < gameData.winningNumber ? "lower" : "higher");
 }
 
@@ -63,7 +59,6 @@ function guessMessage(){
 // Check if the Player's Guess is the winning number 
 
 function checkGuess(){
-	// add code here
 	if (gameData.guessAmount < 5) {
 		if (gameData.playersGuess === gameData.winningNumber) {
 			$('.jumbotron').animate({backgroundColor: '#ffffff'}, '800');
@@ -72,6 +67,7 @@ function checkGuess(){
     			'src':'audio/portal_still_alive.mp3',
     			'autoplay':'autoplay'
 			}).appendTo("body");
+			$('#guess').prop('disabled', 'true');
 		}
 		else {
 			if (gameData.guesses.indexOf(gameData.playersGuess) == -1) {
@@ -85,6 +81,7 @@ function checkGuess(){
     					'src':'audio/portal_goodbye.mp3',
     					'autoplay':'autoplay'
 					}).appendTo("body");
+					$('#guess').prop('disabled', 'true');
 				}
 			}
 			else {
@@ -97,7 +94,6 @@ function checkGuess(){
 // Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
-	// add code here
 	var hints = [];
 	hints.push(gameData.winningNumber);
 	for (var i = 0; i < (5 - gameData.guessAmount) * 2 - 1; i++) {
@@ -109,7 +105,6 @@ function provideHint(){
 // Allow the "Player" to Play Again
 
 function playAgain(){
-	// add code here
 	$('#output').text("");
 	gameData.winningNumber = generateWinningNumber();
 	gameData.guessAmount = 0;
@@ -117,10 +112,12 @@ function playAgain(){
 	$('.jumbotron').animate({backgroundColor: '#eeeeee'}, '200');
 	$('audio').trigger('pause');
 	$('audio').remove();
+	$('#guess').prop('disabled', null);
 }
 
+// Randomize the order of the hints
+
 function shuffle(array) {
-	// randomize the order of the hints
 	var newArray = [];
 	var originalArrayLength = array.length;
 	for (var i = 0; i < originalArrayLength; i++) {
@@ -130,6 +127,7 @@ function shuffle(array) {
 }
 
 /* **** Event Listeners/Handlers ****  */
+
 $('#submit').click(playersGuessSubmission);
 $('#hint').click(provideHint);
 $('#restart').click(playAgain);
